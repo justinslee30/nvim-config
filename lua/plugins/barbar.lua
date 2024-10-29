@@ -12,6 +12,13 @@ return {
 		-- animation = true,
 		-- insert_at_start = true,
 		-- …etc.
+		sidebar_filetypes = {
+			NvimTree = true,
+		},
+	},
+	keys = {
+		{ "<leader>,", "<cmd>BufferPrevious<cr>", "n", desc = "BufferPrevious" },
+		{ "<leader>.", "<cmd>BufferNext<cr>", "n", desc = "BufferNext" },
 	},
 	version = "^1.0.0", -- optional: only update when a new 1.x version is released
 }
