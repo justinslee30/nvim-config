@@ -39,3 +39,32 @@ vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left wind
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+
+-- Keybinds to copy relative path
+vim.api.nvim_create_user_command("CopyRelPath", function()
+	local path = vim.fn.expand("%")
+	vim.fn.setreg("+", path)
+	vim.notify('Copied "' .. path .. '" to the clipboard!')
+end, {})
+
+-- Keybinds for neotest
+vim.keymap.set("n", "<leader>mr", "<cmd>lua require('neotest').run.run()<CR>", { noremap = true, silent = true })
+vim.keymap.set(
+	"n",
+	"<leader>mo",
+	"<cmd>lua require('neotest').output_panel.toggle()<CR>",
+	{ noremap = true, silent = true }
+)
+vim.keymap.set("n", "<leader>mi", "<cmd>lua require('neotest').summary.toggle()<CR>", { noremap = true, silent = true })
+vim.keymap.set(
+	"n",
+	"<leader>md",
+	"<cmd>lua require('neotest').run.run({ strategy = 'dap'})<CR>",
+	{ noremap = true, silent = true }
+)
+
+-- Keybinds for git blame
+vim.keymap.set("n", "<leader>gb", "<cmd>GitBlameOpenCommitURL<CR>", { noremap = true, silent = true })
+
+-- Keybinds for live grep arg
+vim.keymap.set("n", "<leader>fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")

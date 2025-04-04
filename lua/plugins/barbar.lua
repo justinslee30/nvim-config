@@ -68,6 +68,14 @@ return {
 		{ "<leader>,", "<cmd>BufferPrevious<cr>", "n", desc = "BufferPrevious" },
 		{ "<leader>.", "<cmd>BufferNext<cr>", "n", desc = "BufferNext" },
 		{ "<leader>bc", "<cmd>BufferClose<cr>", "n", desc = "BufferClose" },
+		{ "<leader>1", "<cmd>BufferGoto 1<cr>", "n", desc = "BufferGoto 1" },
+		{ "<leader>2", "<cmd>BufferGoto 2<cr>", "n", desc = "BufferGoto 2" },
+		{ "<leader>3", "<cmd>BufferGoto 3<cr>", "n", desc = "BufferGoto 3" },
+		{ "<leader>4", "<cmd>BufferGoto 4<cr>", "n", desc = "BufferGoto 4" },
+		{ "<leader>5", "<cmd>BufferGoto 5<cr>", "n", desc = "BufferGoto 5" },
+		{ "<leader>6", "<cmd>BufferGoto 6<cr>", "n", desc = "BufferGoto 6" },
+		{ "<leader>7", "<cmd>BufferGoto 7<cr>", "n", desc = "BufferGoto 7" },
+		{ "<leader>8", "<cmd>BufferGoto 8<cr>", "n", desc = "BufferGoto 8" },
 	},
 	version = "^1.0.0", -- optional: only update when a new 1.x version is released
 }
