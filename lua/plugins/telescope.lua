@@ -52,17 +52,35 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		-- [[ Configure Telescope ]]
 		-- See `:help telescope` and `:help telescope.setup()`
 		local telescope = require("telescope")
-		local lga_actions = require("telescope-live-grep-args.actions")
+		require("telescope-live-grep-args.actions")
+
+		-- If multiple file selections are detected, open each file. If hitting
+		-- <CR> on a single selection fall back to the default behaviour.
+		-- https://github.com/nvim-telescope/telescope.nvim/issues/1048#issuecomment-1679797700
+		local select_one_or_multi = function(prompt_bufnr)
+			local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+			local multi = picker:get_multi_selection()
+			if not vim.tbl_isempty(multi) then
+				require("telescope.actions").close(prompt_bufnr)
+				for _, j in pairs(multi) do
+					if j.path ~= nil then
+						vim.cmd(string.format("%s %s", "edit", j.path))
+					end
+				end
+			else
+				require("telescope.actions").select_default(prompt_bufnr)
+			end
+		end
 
 		telescope.setup({
 			-- You can put your default mappings / updates / etc. in here
 			--  All the info you're looking for is in `:help telescope.setup()`
 			--
-			-- defaults = {
-			--   mappings = {
-			--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-			--   },
-			-- },
+			defaults = {
+				mappings = {
+					i = { ["<CR>"] = select_one_or_multi },
+				},
+			},
 			-- pickers = {}
 			extensions = {
 				["ui-select"] = {
