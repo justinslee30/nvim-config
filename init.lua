@@ -1,3 +1,4 @@
+require("core.profile")  -- load profile detection first (reads NVIM_PROFILE env var)
 require("core.keymaps")
 require("core.options")
 require("core.snippets")
